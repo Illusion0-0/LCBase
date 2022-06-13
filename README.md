@@ -1,2 +1,1 @@
-# LCBase
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+I like it and it does no harm to anyone thus I do it.
