@@ -1,10 +1,14 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        for(int i=0;i<nums.size()-1;i++){
-            if(nums[i+1]-nums[i]==0)return nums[i];
+        int k = 0, ans=0;
+        while(1){
+            nums[k]*=-1;
+            ans=k;
+            k = -1*nums[k];
+            if(k<0)break;
         }
-        return nums[0];
+        for(int i:nums)if(i<0)i*=-1;
+        return ans;
     }
 };
