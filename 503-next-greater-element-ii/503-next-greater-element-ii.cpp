@@ -2,8 +2,7 @@ class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
         stack<int>s;
-        vector<int>v;
-        v=nums;
+        vector<int>v=nums;
         map<int,queue<int>>ans;
         int val=-1;
         for(int i:nums){
@@ -25,11 +24,8 @@ public:
         if(val!=-1)s.push(val);
         v.clear();
         for(int i:nums){
-            v.push_back(ans[i].front());
+            v.push_back((ans[i].size())?ans[i].front():-1);
             if(!ans[i].empty())ans[i].pop();
-        }
-        for(int i=0;i<v.size();i++){
-            if(v[i]==-1094795586)v[i]=-1;
         }
         return v;
     }
