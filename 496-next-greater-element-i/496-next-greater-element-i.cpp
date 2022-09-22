@@ -1,5 +1,7 @@
 class Solution {
 public:
+    int ans[10001]{0};
+    
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         stack<int>s;
         map<int,int>ans;
