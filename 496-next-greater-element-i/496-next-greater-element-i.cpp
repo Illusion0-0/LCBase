@@ -4,7 +4,6 @@ public:
     
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         stack<int>s;
-        map<int,int>ans;
         for(int i:nums2){
             while(!s.empty() && i>s.top())
             {
@@ -17,11 +16,11 @@ public:
             ans[s.top()]=-1;
             s.pop();
         }
-        vector<int>v;
+        nums2.clear();
         for(int i:nums1){
-            v.push_back(ans[i]);
+            nums2.push_back(ans[i]);
         }
-        return v;
+        return nums2;
         
     }
 };
