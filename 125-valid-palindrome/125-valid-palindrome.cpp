@@ -3,10 +3,10 @@ public:
     
     bool checkPal(string &s, int l, int r){
 	    if(l>=r)return true;
-        if(s[l]!=s[r]){
-            return false;
+        if(s[l]==s[r]){
+            return checkPal(s,l+1,r-1);
         }
-        return checkPal(s,l+1,r-1);
+        return false;
     }
     
     bool isPalindrome(string s) {
