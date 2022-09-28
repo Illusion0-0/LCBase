@@ -12,7 +12,7 @@ public:
     bool isPalindrome(string s) {
         string ans="";
         for(int i=0;i<s.size();i++){
-            if((tolower(s[i])>=97 && tolower(s[i])<=122)||(tolower(s[i])>=48 && tolower(s[i])<=57))
+            if(isalnum(s[i]))
             ans += (char)tolower(s[i]);
             else continue;
         }
