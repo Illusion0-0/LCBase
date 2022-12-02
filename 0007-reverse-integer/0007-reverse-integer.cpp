@@ -4,12 +4,9 @@ public:
         string s = to_string(x);
         std::reverse(s.begin(), s.end());
         int i = 0;
-        for (i = 0; i < s.size(); i++) {
-          if (i == '-' || i == '0')
-            continue;
-          else
+        for (i = 0; i < s.size(); i++) 
+          if (i != '0')
             break;
-        }
         s = s.substr(i, s.size() - i);
         long long ans = stoll(s);
         if (x < 0) ans *= -1;
