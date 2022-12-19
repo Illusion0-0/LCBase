@@ -10,11 +10,10 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         unordered_map<ListNode*,int>m;
-        ListNode *temp=head;
-        while(temp!=NULL){
-            m[temp]++;
-            if(m[temp]>1)return temp;
-            temp = temp->next;
+        while(head!=NULL){
+            m[head]++;
+            if(m[head]>1)return head;
+            head = head->next;
         }
         return NULL;
     }
