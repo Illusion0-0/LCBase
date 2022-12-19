@@ -17,6 +17,7 @@ public:
         while(f!=NULL){
             if(s->val==f->val){
                 s->next = f->next;
+                f->next = NULL;
                 f = s->next;
             }
             else{
