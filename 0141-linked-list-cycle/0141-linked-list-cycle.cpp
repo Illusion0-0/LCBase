@@ -9,14 +9,18 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        bool flag=false;
-        if(head==NULL || head->next==NULL)return flag;
-        ListNode *temp=head;
-        while(temp!=NULL){
-            if(temp->val==INT_MIN){flag=true;break;}
-            temp->val=INT_MIN;            
-            temp=temp->next;
+        ListNode *f=head, *s=head, *e=head;
+        while(s && f && s->next && f->next && f->next->next){
+            s=s->next;
+            f=f->next->next;
+            if(s==f){
+                while(s!=e){
+                    s=s->next;
+                    e=e->next;
+                }
+                return e;
+            }
         }
-        return flag;
+        return NULL;
     }
 };
