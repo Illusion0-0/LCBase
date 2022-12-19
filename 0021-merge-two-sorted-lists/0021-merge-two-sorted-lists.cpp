@@ -13,8 +13,8 @@ public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         ListNode*temp1=list1,*temp2=list2,*ans=new ListNode(-1);
         ListNode *res = ans;
-        while(temp1!=NULL && temp2!=NULL){
-            if(temp1->val<=temp2->val){
+        while(temp1!=NULL || temp2!=NULL){
+            if((temp1!=NULL && temp2==NULL) || (temp2!=NULL && temp1!=NULL && temp1->val<=temp2->val)){
                 ans->next=temp1;
                 ans=ans->next;
                 temp1=temp1->next;
@@ -24,16 +24,6 @@ public:
                 ans=ans->next;
                 temp2=temp2->next;
             }
-        }
-        while(temp1!=NULL){
-            ans->next=temp1;
-            ans=ans->next;
-            temp1=temp1->next;
-        }
-        while(temp2!=NULL){
-            ans->next=temp2;
-            ans=ans->next;
-            temp2=temp2->next;
         }
         return res->next;
     }
