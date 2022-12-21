@@ -14,27 +14,16 @@ public:
         ListNode *ans=new ListNode(-1), *t1=l1, *t2=l2, *res=NULL;
         res=ans;
         int carry=0;
-        while(t1 && t2){
-            int res = t1->val+t2->val+carry;
+        while(t1 || t2){
+            int a=0,b=0, res=0;
+            if(t1)a = t1->val;
+            if(t2)b = t2->val;
+            res = a + b + carry;
             carry = res/10;
             ans->next = new ListNode(res%10);
             ans=ans->next;
-            t1=t1->next;
-            t2=t2->next;
-        }
-        while(t1){
-            int res = t1->val+carry;
-            carry = res/10;
-            ans->next = new ListNode(res%10);
-            t1=t1->next;
-            ans=ans->next;
-        }
-        while(t2){
-            int res = t2->val+carry;
-            carry = res/10;
-            ans->next = new ListNode(res%10);
-            t2=t2->next;
-            ans=ans->next;
+            if(t1)t1=t1->next;
+            if(t2)t2=t2->next;
         }
         if(carry)ans->next=new ListNode(carry);
         return res->next;
