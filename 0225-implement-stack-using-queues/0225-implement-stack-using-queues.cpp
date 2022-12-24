@@ -27,7 +27,7 @@ public:
     }
     
     bool empty() {
-        return !q.size()?true:false;
+        return !sz?true:false;
     }
 };
 
