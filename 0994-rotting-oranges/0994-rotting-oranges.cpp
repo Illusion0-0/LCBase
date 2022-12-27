@@ -1,17 +1,9 @@
 class Solution {
 public:
-    int dx[4]={-1,0,1,0};
-    int dy[4]={0,1,0,-1};
-    int n=0, m=0, ans=-1, ok=0;
-    bool isValid(int row, int col)
-    {
-        if (row < 0 || col < 0 || row >= n || col >= m)
-            return false;
-        return true;
-    }
+    int d[5]={-1,0,1,0,-1};
         
     int orangesRotting(vector<vector<int>>& grid) {
-        n = grid.size(), m = grid[0].size();
+        int n = grid.size(), m = grid[0].size(), ans=-1, ok=0;
         queue<pair<int,int>>q;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
@@ -27,11 +19,9 @@ public:
                 pair<int,int>p = q.front();
                 q.pop();
                 for(int i=0;i<4;i++){
-                    int a = p.first+dx[i];
-                    int b = p.second+dy[i];
-                    if(isValid(a,b) && grid[a][b]==1){
-                        grid[a][b]=2, ok--;
-                        q.push({a,b});
+                    int a = p.first+d[i], b = p.second+d[i+1];
+                    if(a >= 0 && b>=0 && a<n && b<m && grid[a][b]==1){
+                        grid[a][b]=2, ok--,q.push({a,b});
                     }
                 }
             }
