@@ -10,17 +10,11 @@
  * };
  */
 class Solution {
-public:
-    vector<int>a,b;
-    
-    bool func(TreeNode* p, TreeNode* q){
+public:    
+    bool isSameTree(TreeNode* p, TreeNode* q) {
         if(p==NULL && q==NULL)return true;
         if(p==NULL || q==NULL)return false;
         if(p->val!=q->val)return false;
-        return (func(p->left,q->left)&&func(p->right,q->right));
-    }
-    
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        return func(p,q);
+        return (isSameTree(p->left,q->left)&&isSameTree(p->right,q->right));
     }
 };
