@@ -2,7 +2,7 @@ class Solution {
  public:
   int leftMost = INT_MAX, rightMost = INT_MIN, Maxlvl = 0;
   unordered_map<int, unordered_map<int, multiset<int>>> ans;
-  // 2-D Map to store nodes at every [col][row]
+  // 2-D Map to store nodes at every [col][row] in sorted order
   void func(TreeNode* root, int col, int row) {
     if (root == NULL) return;
     leftMost = min(leftMost, col);
