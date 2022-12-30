@@ -11,11 +11,21 @@
  */
 class Solution {
 public:
-    unordered_set<int> s;
+    vector<int>ans;
+    
+    void func(TreeNode *root){
+        if(!root)return;
+        func(root->left);
+        ans.push_back(root->val);
+        func(root->right);
+    }
+    
     bool findTarget(TreeNode* root, int k) {
-        if (!root) return false;
-        if (s.count(k - root->val)) return true;
-        s.insert(root->val);
-        return findTarget(root->left, k) || findTarget(root->right, k);
+        func(root);
+        for(int i=0;i<ans.size();i++){
+            int ind = lower_bound(ans.begin(),ans.end(),k-ans[i])-ans.begin();
+            if(ind!=ans.size() && ind!=i && ans[ind]+ans[i]==k)return true;
+        }
+        return false;
     }
 };
