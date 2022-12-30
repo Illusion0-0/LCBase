@@ -11,20 +11,26 @@
  */
 class Solution {
 public:
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        int rootIdx = 0;
-        return build(preorder, inorder, rootIdx, 0, inorder.size()-1);
+    unordered_map<int,int> lookUpForIndex;
+    TreeNode* solve(vector<int>&  preorder,vector<int>& inorder,int i ,int j,int& preorderIndex)
+    {
+        if(i > j || preorderIndex >= preorder.size()) return nullptr;
+
+        int preorderValue =  preorder[preorderIndex];
+        TreeNode* root = new TreeNode(preorderValue);
+
+        int inorderIndex = lookUpForIndex[preorderValue];
+        preorderIndex++;
+
+        root->left = solve(preorder,inorder, i, inorderIndex - 1, preorderIndex);
+        root->right = solve(preorder,inorder, inorderIndex + 1, j, preorderIndex);
+        return root;
     }
-    
-    TreeNode* build(vector<int>& preorder, vector<int>& inorder, int& rootIdx, int left, int right) {
-        if (left > right) return NULL;
-        int pivot = left;  // find the root from inorder
-        while(inorder[pivot] != preorder[rootIdx]) pivot++;
-        
-        rootIdx++;
-        TreeNode* newNode = new TreeNode(inorder[pivot]);
-        newNode->left = build(preorder, inorder, rootIdx, left, pivot-1);
-        newNode->right = build(preorder, inorder, rootIdx, pivot+1, right);
-        return newNode;
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        for(int i = 0;i < inorder.size();i++)
+            lookUpForIndex[inorder[i]]=i;
+
+        int preorderIndex = 0;
+        return solve(preorder, inorder,  0, preorder.size()-1, preorderIndex);
     }
 };
