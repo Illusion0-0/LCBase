@@ -11,18 +11,20 @@
  */
 class Solution {
 public:
-    vector<int>ans;
-    
-    void func(TreeNode *root){
-        if(!root)return;
-        ans.push_back(root->val);
-        func(root->left);
-        func(root->right);
+    int c=0, ans=0;
+    void func(TreeNode *root, int k){
+        if(!root || c>k)return;
+        func(root->left,k);
+        c++;
+        if(c==k){
+            ans=root->val;
+            return;
+        }
+        func(root->right,k);
     }
     
     int kthSmallest(TreeNode* root, int k) {
-        func(root);
-        sort(ans.begin(),ans.end());
-        return ans[k-1];    
+        func(root,k);
+        return ans;
     }
 };
