@@ -11,17 +11,28 @@
  */
 class Solution {
 public:
-    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        int n = size(inorder), postIdx = n-1;
-        return build(inorder, postorder, 0, n-1, postIdx);
-    }
+    unordered_map<int,int>m;
+    TreeNode* solve(vector<int>& inorder,vector<int>& postorder,int start,int end,int &postIndex){
+        if(start>end) return NULL;
+         int inorderIndex = m[postorder[postIndex]];
 
-    TreeNode* build(vector<int>& in, vector<int>& post, int inStart, int inEnd, int& postIdx) {
-        if(inStart > inEnd) return nullptr;
-        TreeNode* root = new TreeNode(post[postIdx--]);
-        int inIdx = find(begin(in), end(in), root -> val) - begin(in); // we can precalculate this
-        root -> right = build(in, post, inIdx+1, inEnd, postIdx);
-        root -> left  = build(in, post, inStart, inIdx-1, postIdx);
+        TreeNode* root = new TreeNode(inorder[inorderIndex]);    
+        
+        (postIndex)--;
+      root->right=solve(inorder,postorder,inorderIndex+1,end,postIndex);
+        root->left=solve(inorder,postorder,start,inorderIndex-1,postIndex);
+        
         return root;
+    }
+    
+    
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        // precalculating root indexes
+        for(int i=0;i<inorder.size();i++){
+           m[inorder[i]] = i;
+            
+        }
+        int postIndex=postorder.size()-1;
+        return solve(inorder,postorder,0,postorder.size()-1,postIndex);
     }
 };
