@@ -11,30 +11,21 @@
  */
 class Solution {
 public:
-    vector<int>arr;
-    int lvl;
-    unordered_map<int,vector<int>>m;
-    void func(TreeNode *root, int l){
-        if(!root){
-            m[l].push_back(101);
-            return;
+    bool fun(TreeNode* a,TreeNode* b)
+    {
+        if(a==NULL || b==NULL)
+        {
+            return a==b;
         }
-        m[l].push_back(root->val);
-        lvl = max(lvl,l);
-        func(root->left, l+1);
-        func(root->right, l+1);
+        return ((a->val==b->val)&&(fun(a->left,b->right))&&(fun(a->right,b->left)));
+        
     }
     
     bool isSymmetric(TreeNode* root) {
-        func(root,0);
-        bool flag=true;
-        for(int i=0;i<=lvl;i++){
-            vector<int>temp = m[i];
-            reverse(temp.begin(),temp.end());
-            if(temp!=m[i]){
-                flag=false;break;
-            }
+        if(root->left==NULL || root->right==NULL)
+        {
+            return root->left==root->right;
         }
-        return flag;
+        return fun(root->left,root->right);
     }
 };
