@@ -22,6 +22,7 @@ public:
     
     bool findTarget(TreeNode* root, int k) {
         func(root);
+        sort(ans.begin(),ans.end());
         for(int i=0;i<ans.size();i++){
             int ind = lower_bound(ans.begin(),ans.end(),k-ans[i])-ans.begin();
             if(ind!=ans.size() && ind!=i && ans[ind]+ans[i]==k)return true;
