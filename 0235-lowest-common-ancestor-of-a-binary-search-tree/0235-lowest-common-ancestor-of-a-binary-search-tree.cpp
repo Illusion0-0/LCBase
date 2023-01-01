@@ -10,17 +10,13 @@
 
 class Solution {
 public:
-    TreeNode *ans=NULL;
-    
-    void helper(TreeNode* root, int p, int q){
-        if(!root)return;
-        if(p<=root->val && q>=root->val){ans=root;return;}
-        if(p<=root->val && q<=root->val) helper(root->left,p,q);
-        if(p>root->val && q>root->val) helper(root->right,p,q);
-    }
-    
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        helper(root, min(p->val,q->val), max(p->val,q->val));
-        return ans;
+        if ((root -> val > p -> val) && (root -> val > q -> val)) {
+            return lowestCommonAncestor(root -> left, p, q);
+        }
+        if ((root -> val < p -> val) && (root -> val < q -> val)) {
+            return lowestCommonAncestor(root -> right, p, q);
+        }
+        return root;
     }
 };
