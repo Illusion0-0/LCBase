@@ -15,8 +15,8 @@ public:
     void helper(TreeNode* root, int p, int q){
         if(!root)return;
         if(p<=root->val && q>=root->val){ans=root;return;}
-        helper(root->left,p,q);
-        helper(root->right,p,q);
+        if(p<=root->val && q<=root->val) helper(root->left,p,q);
+        if(p>root->val && q>root->val) helper(root->right,p,q);
     }
     
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
