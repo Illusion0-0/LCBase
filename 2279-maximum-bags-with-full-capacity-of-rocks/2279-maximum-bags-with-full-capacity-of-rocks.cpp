@@ -7,12 +7,13 @@ public:
             diff.push_back(capacity[i]-rocks[i]);
             if(capacity[i]==rocks[i]) ans++;
         }
-        sort(diff.begin(),diff.end());
-        for(int i=0;i<n;i++){
-            if(additionalRocks && diff[i] && diff[i]<=additionalRocks){
+        priority_queue<int, vector<int>, greater<int>>pq(diff.begin(),diff.end());
+        while(!pq.empty()){
+            if(additionalRocks && pq.top() && pq.top()<=additionalRocks){
                 ans++;
-                additionalRocks-=diff[i];
+                additionalRocks-=pq.top();
             }
+            pq.pop();
         }
         return ans;
     }
