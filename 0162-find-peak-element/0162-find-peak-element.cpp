@@ -4,13 +4,12 @@ public:
     {
         int low = 0;
         int high = num.size()-1;
-        if(low==high)return 0;
         while(low <= high)
         {
             int mid = low+(high-low)/2;
             int l=mid-1, r=mid+1;
-            if(l<0)l=INT_MIN; else l=num[l];
-            if(r>num.size()-1)r=INT_MIN;else r=num[r];
+            if(l<0)l=INT_MIN; else l=num[l]; // checking mid-1
+            if(r>num.size()-1)r=INT_MIN;else r=num[r]; // checking mid+1
             if((l<num[mid]) && (num[mid]>r))return mid;
             else if(num[mid] < r)
                 low = mid+1;
