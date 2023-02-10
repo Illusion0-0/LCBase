@@ -1,23 +1,36 @@
 class Solution {
 public:
+    int dx[4] = {0,1,0,-1};
+    int dy[4] = {1,0,-1,0};
     
     int maxDistance(vector<vector<int>>& grid) {
         int n = grid.size();
-        vector<pair<int,int>>zero,one;
+        queue<pair<int,int>>q;
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
-                if(grid[i][j]==0) zero.push_back({i,j});
-                else one.push_back({i,j});
+                if(grid[i][j]==1)
+                    q.push({i,j});
             }
         }
+        if(q.size()==n*n)return -1;
         int ans=-1;
-        for(auto p:zero){
-            int dist = INT_MAX;
-            for(auto q:one){
-                dist = min(dist,abs(q.first-p.first)+abs(q.second-p.second));
+        while(!q.empty()){
+            int sz = q.size();
+            while(sz--){
+                pair<int,int>p = q.front();
+                q.pop();
+                int u = p.first;
+                int v = p.second;
+                for(int i=0;i<4;i++){
+                    int ex = dx[i]+u, why = dy[i]+v; 
+                    if(ex>=0 && ex<n && why>=0 && why<n && grid[ex][why]==0){
+                        grid[ex][why]=1;
+                        q.push({ex,why});
+                    }    
+                }
             }
-            ans = max(ans,dist);
+            ans++;
         }
-        return (ans==INT_MAX?-1:ans);
+        return ans;
     }
 };
