@@ -1,27 +1,15 @@
 class Solution {
 public:
-    vector<int> addToArrayForm(vector<int>& a, int k) {
-        vector<int>knum,ans;
-        while(k){
-            int x = k%10;
-            knum.push_back(x);
-            k/=10;
+    vector<int> addToArrayForm(vector<int>& A, int K) {
+        for (int i = A.size() - 1; i >= 0 && K > 0; --i) {
+            A[i] += K;
+            K = A[i] / 10;
+            A[i] %= 10;
         }
-        reverse(a.begin(),a.end());
-        int carry = 0;
-        if(a.size()>knum.size())swap(a,knum);
-        for(int i=0;i<a.size();i++){
-            int x = a[i]+knum[i]+carry;
-            ans.push_back(x%10);
-            carry = x/10;
+        while (K > 0) {
+            A.insert(A.begin(), K % 10);
+            K /= 10;
         }
-        for(int i=a.size();i<knum.size();i++){
-            int x = knum[i]+carry;
-            ans.push_back(x%10);
-            carry = x/10;
-        }
-        if(carry)ans.push_back(carry);
-        reverse(ans.begin(),ans.end());
-        return ans;
+        return A;
     }
 };
