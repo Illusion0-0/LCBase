@@ -22,7 +22,6 @@ public:
     
     int minDiffInBST(TreeNode* root) {
         dfs(root,NULL);
-        sort(a.begin(),a.end());
         for(int i=0;i<a.size()-1;i++){
             ans=min(ans,abs(a[i]-a[i+1]));
         }
