@@ -3,7 +3,6 @@ class Solution
     public:
     int searchInsert(vector<int>& nums, int target) 
     {
-        int p = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
-        return p;
+        return lower_bound(nums.begin(), nums.end(), target) - nums.begin();
     }
 };                          
