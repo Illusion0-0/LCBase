@@ -1,6 +1,6 @@
 class RangeFreqQuery {
 public:
-    unordered_map<int,vector<int>>m;
+    vector<vector<int>>m = vector<vector<int>>(10005);
     RangeFreqQuery(vector<int>& a) {
         int n = a.size();
         for(int i = 0; i < n; i++){
