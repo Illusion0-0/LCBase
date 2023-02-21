@@ -11,19 +11,15 @@ public:
         while(true){
             int c = capacity+extra;
             int x = upper_bound(begin(pre),end(pre),c)-begin(pre);
-            // cout<<x<<" - "<<c<<" ";
             if(x<n){
                 ans+=2*x;
                 extra = pre[x-1];
             }
             else{
                 ans+=x;
-                // cout<<ans<<". ";
                 break;
             }
-            // cout<<ans<<" ";
         }
-        cout<<endl;
         return ans;
     }
 };
