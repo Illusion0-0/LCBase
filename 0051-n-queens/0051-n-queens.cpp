@@ -1,12 +1,11 @@
 class Solution {
 public:
     vector<vector<string>>ans;
+    int queen[10];
     bool check(int row, int col, vector<string>&b){
         for(int i=0;i<row;i++){
             int r = i;
-            int c = 0;
-            for(int j=0;j<b.size();j++)
-                if(b[i][j]=='Q')c=j;
+            int c = queen[i];
             if(c==col || abs(row-r)==abs(col-c))return false;
         }
         return true;
@@ -19,9 +18,11 @@ public:
         }
         for(int col=0;col<b.size();col++){
             if(check(row,col,b)){
+                queen[row]=col;
                 b[row][col]='Q';
                 helper(b,row+1);
                 b[row][col]='.';
+                queen[row]=-1;
             }
         }
     }
