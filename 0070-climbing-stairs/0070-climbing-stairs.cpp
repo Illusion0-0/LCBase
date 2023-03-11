@@ -1,12 +1,22 @@
+int dp[50];
 class Solution {
 public:
-    int climbStairs(int n) {
-        vector<int>dp(n,0);
-        dp[0]=1;
-        if(n>1)dp[1]=2;
-        for(int i=2;i<n;i++){
-            dp[i]=dp[i-1]+dp[i-2];
+    int helper(int i, int n){
+        if(i>=n)return 0;
+        if(i==n-1)return 1;
+        if(i==n-2)return 2;
+        if(dp[i]!=-1)return dp[i];
+        int ans=0;
+        for(int j=1;j<3;j++){
+            if(i+j<n){
+                ans+=helper(i+j,n);
+            }
         }
-        return dp[n-1];
+        return dp[i] = ans;
+    }
+    
+    int climbStairs(int n) {
+        memset(dp,-1,sizeof(dp));
+        return helper(0, n);
     }
 };
