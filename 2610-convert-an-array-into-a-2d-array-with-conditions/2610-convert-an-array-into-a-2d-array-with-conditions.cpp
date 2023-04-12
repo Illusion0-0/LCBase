@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> findMatrix(vector<int>& nums) {
         vector<vector<int>>ans;
-        map<int,int>m;
+        unordered_map<int,int>m;
         for(int i:nums){
             m[i]++;
         }
