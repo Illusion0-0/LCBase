@@ -8,7 +8,7 @@ public:
         for(int i=1;i<n;i++){
             if(path[i-1]=='/' && path[i]=='/')continue;
             if(path[i]!='/'){
-                temp+=path[i];
+                temp.push_back(path[i]);
             }
             else{
                 cout<<temp<<" ";
@@ -25,7 +25,8 @@ public:
         }
         string res="/";
         for(string k:ans){
-            res+=k+'/';
+            res+=k;
+            res.push_back('/');
         }
         if(res.size()>1)res.pop_back();
         cout<<endl;
