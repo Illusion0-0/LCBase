@@ -1,18 +1,18 @@
 class Solution {
 public:
+    int m[201];
     vector<vector<int>> findMatrix(vector<int>& nums) {
         vector<vector<int>>ans;
-        unordered_map<int,int>m;
         for(int i:nums){
             m[i]++;
         }
         int n=nums.size();
         while(n--){
             vector<int>ok;
-            for(auto &i:m){
-                if(i.second>0){
-                ok.push_back(i.first);
-                i.second--;
+            for(int i=0;i<=200;i++){
+                if(m[i]>0){
+                ok.push_back(i);
+                m[i]--;
                 }
             }
             if(!ok.size())break;
