@@ -12,9 +12,7 @@ public:
     }
     
     void addBack(int num) {
-        if(s.find(num)==s.end()){
-            s.insert(num);
-        }
+        s.insert(num);
     }
 };
 
