@@ -13,7 +13,7 @@ public:
     
     long long mostPoints(vector<vector<int>>& q) {
         int n = q.size();
-        fill(dp,dp+2*n+4,0);
+        fill(dp,dp+2*n,0);
         return rec(q,0);
     }
 };
