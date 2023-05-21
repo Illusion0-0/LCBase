@@ -1,12 +1,12 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& a, int target) {
-        unordered_map<int, int> imap;
-        for (int i = 0;; ++i) {
-            auto it = imap.find(target - a[i]);
-            if (it != imap.end()) 
-                return {i, it->second};
-            imap[a[i]] = i;
+        unordered_map<int,pair<int,int>>cnt;
+        for(int i=0;i<a.size();i++){
+            int left = target - a[i];
+            if(cnt.find(left)!=cnt.end())return {i,cnt[left].second};
+            cnt[a[i]] = {a[i],i};
         }
+        return {0,0};
     }
 };
