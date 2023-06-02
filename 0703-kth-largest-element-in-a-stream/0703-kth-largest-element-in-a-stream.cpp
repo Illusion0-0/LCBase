@@ -4,14 +4,13 @@ public:
     int ind=0;
     KthLargest(int k, vector<int>& nums) {
         ind=k;
-        for(int i:nums)m.insert(i);
+        for(int i:nums){m.insert(i); if(m.size()>k)m.erase(--m.end());}
     }
     
     int add(int val) {
         m.insert(val);
-        auto it=m.begin();
-        for(int i=1;i<ind;i++) it++;
-        return *it;
+        if(m.size()>ind)m.erase(--m.end());
+        return *(--m.end());
     }
 };
 
