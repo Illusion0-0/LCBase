@@ -1,6 +1,6 @@
 class DetectSquares {
 public:
-    map<pair<int,int>,int> m;
+    map<vector<int>,int> m;
     DetectSquares() {
         m.clear();
     }
@@ -15,8 +15,8 @@ public:
         int ans=0;
         for(auto &i:m)
         {
-            int x2 = i.first.first;
-            int y2 = i.first.second;
+            int x2 = i.first[0];
+            int y2 = i.first[1];
             int a2 = m[{x2,y2}];
             if(y2==y1)
             {
@@ -24,8 +24,8 @@ public:
                 int cntp1=0,cntp2=0,cntn1=0,cntn2=0;
                 for(auto &j:m)
                 {
-                    int x3 = j.first.first;
-                    int y3 = j.first.second;
+                    int x3 = j.first[0];
+                    int y3 = j.first[1];
                     if(x3==x1 && y3>y1 && y3-y1==len)
                     {
                         cntp1+=m[{x3,y3}];
@@ -38,8 +38,8 @@ public:
                 ans+=cntp1*cntp2*a2;
                 for(auto &j:m)
                 {
-                    int x3 = j.first.first;
-                    int y3 = j.first.second;
+                    int x3 = j.first[0];
+                    int y3 = j.first[1];
                     if(x3==x1 && y1>y3 && y1-y3==len)
                     {
                         cntn1+=m[{x3,y3}];
