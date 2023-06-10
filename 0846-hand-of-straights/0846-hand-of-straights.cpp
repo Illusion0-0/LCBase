@@ -2,7 +2,6 @@ class Solution {
 public:
     bool isNStraightHand(vector<int>& hand, int groupSize) {
         sort(hand.begin(),hand.end());
-        queue<int>q;
         unordered_map<int,int>m;
         for(int i=0;i<hand.size();i++){
             m[hand[i]]++;
