@@ -1,7 +1,7 @@
 class Solution {
     int dp[305];
 public:
-    map<string,int>m;
+    unordered_map<string,int>m;
     
     bool rec(string &s, int i){
         if(i==s.size())return 1;
