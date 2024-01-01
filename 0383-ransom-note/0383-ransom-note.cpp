@@ -1,10 +1,11 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        unordered_map<char,int>mag,ransom;
-        for(char c:magazine)mag[c]++;
-        for(char c:ransomNote)ransom[c]++;
-        for(char c:ransomNote)if(mag[c]<ransom[c])return false;
+        int mag[26]{0};
+        for(char c:magazine)mag[c-'a']++;
+        for(char c:ransomNote)
+            if(--mag[c-'a']<0)
+                    return false;
         return true;
         
         
