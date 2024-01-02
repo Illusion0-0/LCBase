@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<vector<int>>ans;
-    // vector<int>temp;
 
     void helper(int j, int sum, vector<int>& v, int target, vector<int> temp){
         if(j==v.size())return;
