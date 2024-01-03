@@ -8,7 +8,6 @@ public:
             for(char c:s){
                 if(c=='1')cnt++;
             }
-            cout<<cnt<<" ";
             if(cnt)v.push_back(cnt);
         }
         int ans=0;
